@@ -1,4 +1,4 @@
-# Machine Learning Boot Camp Parts 1-3 - Ava Lawless p
+# Machine Learning Boot Camp Parts 1-3 - Ava Lawless 
 
 # Step one: Review these two datasets and brainstorm problems that could be
 # addressed with the dataset. Identify a question for each dataset.
@@ -53,18 +53,20 @@ print(college.columns)
 
 # %%
 # Filter data set to only include relevant columns
-college_filtered = college.drop(columns=['basic', 'hbcu', 'flagship', 'nicknames', 'similar', 
-                                         'med_sat_value', 'med_sat_percentile', 'endow_value',
-                                         'endow_percentile', 'vsa_year', 'vsa_grad_after4_first',
-                                         'vsa_grad_after4_first', 'vsa_grad_elsewhere_after4_first',
-                                         'vsa_enroll_after4_first', 'vsa_enroll_elsewhere_after4_first',
-                                         'vsa_grad_after6_first', 'vsa_grad_elsewhere_after6_first',
-                                         'vsa_enroll_after6_first', 'vsa_enroll_elsewhere_after6_first',
-                                         'vsa_grad_after4_transfer', 'vsa_grad_elsewhere_after4_transfer',
-                                         'vsa_enroll_after4_transfer', 'vsa_enroll_elsewhere_after4_transfer',
-                                         'vsa_grad_after6_transfer', 'vsa_grad_elsewhere_after6_transfer',
-                                         'vsa_enroll_after6_transfer', 'vsa_enroll_elsewhere_after6_transfer',
-                                         'city', 'state', 'level', 'site', 'counted_pct', 'chronname'])
+college_filtered = college.drop(columns=[
+  'basic', 'hbcu', 'flagship', 'nicknames', 'similar', 
+  'med_sat_value', 'med_sat_percentile', 'endow_value',
+  'endow_percentile', 'vsa_year', 'vsa_grad_after4_first',
+  'vsa_grad_after4_first', 'vsa_grad_elsewhere_after4_first',
+  'vsa_enroll_after4_first', 'vsa_enroll_elsewhere_after4_first',
+  'vsa_grad_after6_first', 'vsa_grad_elsewhere_after6_first',
+  'vsa_enroll_after6_first', 'vsa_enroll_elsewhere_after6_first',
+  'vsa_grad_after4_transfer', 'vsa_grad_elsewhere_after4_transfer',
+  'vsa_enroll_after4_transfer', 'vsa_enroll_elsewhere_after4_transfer',
+  'vsa_grad_after6_transfer', 'vsa_grad_elsewhere_after6_transfer',
+  'vsa_enroll_after6_transfer', 'vsa_enroll_elsewhere_after6_transfer',
+  'city', 'state', 'level', 'site', 'counted_pct', 'chronname'
+])
 print(college_filtered.head())
 # %%
 # Check for missing values
@@ -125,7 +127,12 @@ print(jobs.columns)
 print(jobs.isnull().sum())
 # %%
 # Filter data set to only include relevant columns
-jobs_filtered = jobs.drop(columns=['ssc_p', 'ssc_b', 'hsc_p', 'hsc_b'])
+jobs_filtered = jobs.drop(columns=[
+  'ssc_p', 
+  'ssc_b', 
+  'hsc_p', 
+  'hsc_b'
+])
 print(jobs_filtered.head())
 # %%
 # Check for missing values
@@ -147,7 +154,14 @@ print(jobs_filtered['degree_t'].value_counts())
 print(jobs_filtered.dtypes)
 # %%
 # Apply one-hot encoding to the categorical columns
-jobs_encoded = pd.get_dummies(jobs_filtered, columns=['degree_t', 'gender', 'hsc_s', 'workex', 'specialisation', 'status'], drop_first=True)
+jobs_encoded = pd.get_dummies(jobs_filtered, columns=[
+  'degree_t', 
+  'gender', 
+  'hsc_s', 
+  'workex', 
+  'specialisation',
+  'status'
+], drop_first=True)
 print(jobs_encoded.head())
 # %%
 # Calculate the prevalence of the target variable
