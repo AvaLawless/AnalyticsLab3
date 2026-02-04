@@ -1,4 +1,4 @@
-# Machine Learning Boot Camp - Ava Lawless
+# Machine Learning Boot Camp Parts 1-3 - Ava Lawless p
 
 # Step one: Review these two datasets and brainstorm problems that could be
 # addressed with the dataset. Identify a question for each dataset.
@@ -53,11 +53,26 @@ print(college.columns)
 
 # %%
 # Filter data set to only include relevant columns
-college_filtered = college[['student_count', 'control']]
+college_filtered = college.drop(columns=['basic', 'hbcu', 'flagship', 'nicknames', 'similar', 
+                                         'med_sat_value', 'med_sat_percentile', 'endow_value',
+                                         'endow_percentile', 'vsa_year', 'vsa_grad_after4_first',
+                                         'vsa_grad_after4_first', 'vsa_grad_elsewhere_after4_first',
+                                         'vsa_enroll_after4_first', 'vsa_enroll_elsewhere_after4_first',
+                                         'vsa_grad_after6_first', 'vsa_grad_elsewhere_after6_first',
+                                         'vsa_enroll_after6_first', 'vsa_enroll_elsewhere_after6_first',
+                                         'vsa_grad_after4_transfer', 'vsa_grad_elsewhere_after4_transfer',
+                                         'vsa_enroll_after4_transfer', 'vsa_enroll_elsewhere_after4_transfer',
+                                         'vsa_grad_after6_transfer', 'vsa_grad_elsewhere_after6_transfer',
+                                         'vsa_enroll_after6_transfer', 'vsa_enroll_elsewhere_after6_transfer',
+                                         'city', 'state', 'level', 'site', 'counted_pct', 'chronname'])
 print(college_filtered.head())
 # %%
 # Check for missing values
 print(college_filtered.isnull().sum())
+
+# %%
+# Drop missing values
+college_filtered = college_filtered.dropna()
 
 # %%
 # Check the unique values in the control column
@@ -65,6 +80,10 @@ print(college_filtered['control'].unique())
 # %%
 # Count number of rows that include each type of institution
 print(college_filtered['control'].value_counts())
+
+# %%
+# Check data types
+print(college_filtered.dtypes)
 
 # %%
 # Apply one-hot encoding to the control column
@@ -101,9 +120,12 @@ print(jobs.dtypes)
 # %%
 # Check column names
 print(jobs.columns)
+
+# %%
+print(jobs.isnull().sum())
 # %%
 # Filter data set to only include relevant columns
-jobs_filtered = jobs[['degree_t', 'salary']]
+jobs_filtered = jobs.drop(columns=['ssc_p', 'ssc_b', 'hsc_p', 'hsc_b'])
 print(jobs_filtered.head())
 # %%
 # Check for missing values
@@ -121,9 +143,11 @@ print(jobs_filtered['degree_t'].unique())
 # Count number of rows that include each type of degree
 print(jobs_filtered['degree_t'].value_counts())
 
+# Check data types
+print(jobs_filtered.dtypes)
 # %%
-# Apply one-hot encoding to the degree_t column
-jobs_encoded = pd.get_dummies(jobs_filtered, columns=['degree_t'], drop_first=True)
+# Apply one-hot encoding to the categorical columns
+jobs_encoded = pd.get_dummies(jobs_filtered, columns=['degree_t', 'gender', 'hsc_s', 'workex', 'specialisation', 'status'], drop_first=True)
 print(jobs_encoded.head())
 # %%
 # Calculate the prevalence of the target variable
